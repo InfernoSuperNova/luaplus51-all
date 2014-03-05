@@ -898,7 +898,7 @@ LUAPLUS_INLINE lua_Integer LuaState::L_len(int index)
 
 LUAPLUS_INLINE void LuaState::SetFuncs(const luaL_Reg *l, int nup) {
 #if LUA_VERSION_NUM == 501
-	luaI_openlib(LuaState_to_lua_State(this), NULL, l, nup);
+	luaL_openlib(LuaState_to_lua_State(this), NULL, l, nup);
 #elif LUA_VERSION_NUM >= 502
 	luaL_setfuncs(LuaState_to_lua_State(this), l, nup);
 #endif
@@ -1169,7 +1169,7 @@ LUAPLUS_INLINE void LuaState::GetFastRef(int ref) {
 // lauxlib functions.
 LUAPLUS_INLINE void LuaState::OpenLib(const char *libname, const luaL_Reg *l, int nup) {
 #if LUA_VERSION_NUM == 501
-	luaI_openlib(LuaState_to_lua_State(this), libname, l, nup);
+	luaL_openlib(LuaState_to_lua_State(this), libname, l, nup);
 #elif LUA_VERSION_NUM >= 502
 	assert(0);
 #endif

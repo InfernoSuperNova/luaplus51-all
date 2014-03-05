@@ -1364,10 +1364,9 @@ inline void LuaObject::DeepClone(LuaObject& outObj) const {
 	}
 }
 
-
 inline int LuaObject_str2d (const char *s, lua_Number *result) {
   char *endptr;
-  *result = lua_str2number(s, &endptr);
+  *result = strtod((s), (&endptr));
   if (endptr == s) return 0;  /* conversion failed */
   if (*endptr == 'x' || *endptr == 'X')  /* maybe an hexadecimal constant? */
     *result = (lua_Number)(strtoul(s, &endptr, 16));
